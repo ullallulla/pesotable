@@ -8,14 +8,14 @@ import { featuredPrintables, printables } from "../../../backend/data/prints"
 
 const HomePage = () => {
   return (
-    <main className="flex-1 max-w-7xl mx-auto">
+    <main className="flex-1">
         <section className="py-6 md:py-10 bg-muted/50">
-          <div className="container">
+          <div className="container max-w-7xl mx-auto">
             <FeaturedPrintables printables={featuredPrintables} />
           </div>
         </section>
-        <section className="py-8 container">
-          <div className="flex flex-col gap-4">
+        <section className="py-8 container max-w-7xl mx-auto">
+          <div className="flex flex-col gap-4 ">
             <div className="flex items-center justify-between">
               <h2 className="text-2xl font-bold tracking-tight">Browse Printables</h2>
               <div className="flex items-center gap-2">
