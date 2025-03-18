@@ -1,10 +1,11 @@
 import express from 'express';
 import cors from 'cors';
 import printsRouter from './controllers/prints'
+import { PORT } from './utils/config'
+import { connectToDatabase } from './utils/db';
 
 
 const app = express();
-const PORT = process.env.PORT || 3001;
 
 app.use(cors());
 app.use(express.json());
@@ -15,6 +16,11 @@ app.get('/', (req, res) => {
 
 app.use('/api', printsRouter)
 
-app.listen(PORT, () => {
-  console.log(`Server running on port ${PORT}`);
-});
+const start = async () => {
+  await connectToDatabase()
+  app.listen(PORT, () => {
+    console.log(`Server running on port ${PORT}`);
+  });
+}
+
+start()
