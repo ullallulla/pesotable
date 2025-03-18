@@ -29,7 +29,10 @@ PrintModel.init({
         type: DataTypes.BOOLEAN,
         defaultValue: false
     },
-    featuredImage: {
+    imageUrl: {
+        type: DataTypes.STRING
+    },
+    fileUrl: {
         type: DataTypes.STRING
     },
     downloads: {

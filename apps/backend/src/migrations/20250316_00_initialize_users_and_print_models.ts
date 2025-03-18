@@ -62,7 +62,10 @@ export const up = async ({context: queryInterface}: Props) => {
             type: DataTypes.BOOLEAN,
             defaultValue: false
         },
-        featured_image: {
+        image_url: {
+            type: DataTypes.STRING
+        },
+        file_url: {
             type: DataTypes.STRING
         },
         downloads: {
