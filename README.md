@@ -1,7 +1,7 @@
 # Pesotable
 ## TODO: 
-- [ ] set up database and data model
-- [ ] add file uploading ( pictures, 3d models )
+- [x] set up initial database and data model
+- [x] add file uploading ( pictures, 3d models )
 - [ ] add file downloading
 - [ ] landing page
 - [ ] product page
@@ -14,4 +14,8 @@
 - [ ] 3d model viewer
 - [ ] stripe payment
 - [ ] add analytics
+
+
+## 18-3-2025
+- [ ] auth handling for uploading
 
