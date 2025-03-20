@@ -22,3 +22,7 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+
+public/models
+src/components/ModelRenderer.tsx
+src/components/STLViewer.tsx
