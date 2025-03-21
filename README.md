@@ -1,5 +1,7 @@
 # Pesotable
-## TODO: 
+
+## TODO:
+
 - [x] set up initial database and data model
 - [x] add file uploading ( pictures, 3d models )
 - [ ] add file downloading
@@ -7,7 +9,7 @@
 - [ ] product page
     - [ ] description
     - [ ] reviews
-    - [ ] comments? 
+    - [ ] comments?
 - [ ] add authentication
 - [ ] add admin page
 - [ ] add admin ability to add products
@@ -15,7 +17,6 @@
 - [ ] stripe payment
 - [ ] add analytics
 
-
 ## 18-3-2025
-- [ ] auth handling for uploading
 
+- [ ] auth handling for uploading

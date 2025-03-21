@@ -1,16 +1,15 @@
-import { DataTypes, QueryInterface } from "sequelize";
+import { DataTypes, QueryInterface } from 'sequelize';
 
 interface Props {
-    context: QueryInterface
+    context: QueryInterface;
 }
 
-
-export const up = async ({context: queryInterface}: Props) => {
+export const up = async ({ context: queryInterface }: Props) => {
     await queryInterface.createTable('users', {
         id: {
             type: DataTypes.INTEGER,
             primaryKey: true,
-            autoIncrement: true
+            autoIncrement: true,
         },
         username: {
             type: DataTypes.STRING,
@@ -19,78 +18,77 @@ export const up = async ({context: queryInterface}: Props) => {
         },
         name: {
             type: DataTypes.STRING,
-            allowNull: false
+            allowNull: false,
         },
         password_hash: {
             type: DataTypes.STRING,
-            allowNull: false
+            allowNull: false,
         },
         created_at: {
             type: DataTypes.DATE,
-            allowNull:false,
-            defaultValue: DataTypes.NOW
+            allowNull: false,
+            defaultValue: DataTypes.NOW,
         },
         updated_at: {
             type: DataTypes.DATE,
             allowNull: false,
-            defaultValue: DataTypes.NOW
-        }
-    })
+            defaultValue: DataTypes.NOW,
+        },
+    });
     await queryInterface.createTable('print_models', {
         id: {
             type: DataTypes.INTEGER,
             primaryKey: true,
-            autoIncrement: true
+            autoIncrement: true,
         },
-        title: { 
+        title: {
             type: DataTypes.STRING,
-            allowNull: false
+            allowNull: false,
         },
         description: {
-            type: DataTypes.TEXT
+            type: DataTypes.TEXT,
         },
         user_id: {
             type: DataTypes.INTEGER,
             allowNull: false,
-            references: { model: 'users', key: 'id' }
+            references: { model: 'users', key: 'id' },
         },
         price: {
             type: DataTypes.FLOAT,
-            defaultValue: 0.0
+            defaultValue: 0.0,
         },
         is_published: {
             type: DataTypes.BOOLEAN,
-            defaultValue: false
+            defaultValue: false,
         },
         image_url: {
-            type: DataTypes.STRING
+            type: DataTypes.STRING,
         },
         file_url: {
-            type: DataTypes.STRING
+            type: DataTypes.STRING,
         },
         downloads: {
             type: DataTypes.INTEGER,
-            defaultValue: 0
+            defaultValue: 0,
         },
         rating: {
             type: DataTypes.FLOAT,
-            defaultValue: 0.0
+            defaultValue: 0.0,
         },
         created_at: {
             type: DataTypes.DATE,
-            allowNull:false,
-            defaultValue: DataTypes.NOW
+            allowNull: false,
+            defaultValue: DataTypes.NOW,
         },
         updated_at: {
             type: DataTypes.DATE,
             allowNull: false,
-            defaultValue: DataTypes.NOW
-        }
-    })
+            defaultValue: DataTypes.NOW,
+        },
+    });
+};
 
-}
-
-export const down = async ( {context: queryInterface}: Props ) => {
-    await queryInterface.dropTable('print_models')
-    await queryInterface.dropTable('users')
-}
+export const down = async ({ context: queryInterface }: Props) => {
+    await queryInterface.dropTable('print_models');
+    await queryInterface.dropTable('users');
+};
