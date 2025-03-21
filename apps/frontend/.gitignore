@@ -26,3 +26,4 @@ dist-ssr
 public/models
 src/components/ModelRenderer.tsx
 src/components/STLViewer.tsx
+src/components/TokenDebugger.tsx
