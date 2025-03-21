@@ -11,7 +11,7 @@
 - [ ] add authentication
 - [ ] add admin page
 - [ ] add admin ability to add products
-- [ ] 3d model viewer
+- [x] 3d model viewer
 - [ ] stripe payment
 - [ ] add analytics
 
