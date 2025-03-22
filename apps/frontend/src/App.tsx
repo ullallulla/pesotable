@@ -5,10 +5,12 @@ import HomePage from '@/components/HomePage';
 import PrintablePage from './components/PrintablePage';
 import UploadPage from './components/UploadPage';
 import ModelViewer from './components/ModelViewer';
+import PostHogPageView from './lib/pageview';
 
 const App = () => {
     return (
         <Router>
+            <PostHogPageView />
             <Header />
             <Routes>
                 <Route path='/' element={<HomePage />} />

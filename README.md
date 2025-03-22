@@ -15,8 +15,8 @@
 - [ ] add admin ability to add products
 - [x] 3d model viewer
 - [ ] stripe payment
-- [ ] add analytics
+- [x] add analytics
 
 ## 18-3-2025
 
-- [ ] auth handling for uploading
+- [x] auth handling for uploading
