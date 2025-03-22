@@ -77,6 +77,12 @@ const Header = () => {
                         <SignedIn>
                             <UserButton />
                         </SignedIn>
+                        <Button variant='ghost' asChild className='h-10 px-4'>
+                            <Link to='/model'>Model Viewer</Link>
+                        </Button>
+                        <Button variant='ghost' asChild className='h-10 px-4'>
+                            <Link to='/upload'>Upload</Link>
+                        </Button>
                     </div>
                 </div>
             </div>
