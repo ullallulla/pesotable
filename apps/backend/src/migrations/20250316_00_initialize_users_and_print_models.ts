@@ -49,9 +49,8 @@ export const up = async ({ context: queryInterface }: Props) => {
             type: DataTypes.TEXT,
         },
         user_id: {
-            type: DataTypes.INTEGER,
+            type: DataTypes.STRING,
             allowNull: false,
-            references: { model: 'users', key: 'id' },
         },
         price: {
             type: DataTypes.FLOAT,

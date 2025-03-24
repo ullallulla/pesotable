@@ -25,7 +25,7 @@ export const creators = [
 
 export const printables: Printable[] = [
     {
-        id: 'print1',
+        id: 1,
         title: 'Weekly Planner Template',
         description:
             'Stay organized with this beautiful weekly planner template. Includes daily schedules, to-do lists, and habit trackers.',
@@ -40,7 +40,7 @@ export const printables: Printable[] = [
         dateAdded: '2025-02-15',
     },
     {
-        id: 'print2',
+        id: 2,
         title: 'Minimalist Wall Art Bundle',
         description: 'A collection of 5 minimalist wall art prints perfect for modern home decor.',
         image: '/placeholder.svg?height=400&width=400',
@@ -55,7 +55,7 @@ export const printables: Printable[] = [
         dateAdded: '2025-02-10',
     },
     {
-        id: 'print3',
+        id: 3,
         title: 'Dinosaur 3D Model Pack',
         description: 'Collection of 10 detailed dinosaur models ready for 3D printing.',
         image: '/placeholder.svg?height=400&width=400',
@@ -69,7 +69,7 @@ export const printables: Printable[] = [
         dateAdded: '2025-02-05',
     },
     {
-        id: 'print4',
+        id: 4,
         title: 'Budget Tracker Spreadsheet',
         description: 'Comprehensive budget tracking system with automated calculations.',
         image: '/placeholder.svg?height=400&width=400',
@@ -83,7 +83,7 @@ export const printables: Printable[] = [
         dateAdded: '2025-01-28',
     },
     {
-        id: 'print5',
+        id: 5,
         title: 'Alphabet Flash Cards',
         description: 'Educational flash cards for children learning the alphabet.',
         image: '/placeholder.svg?height=400&width=400',
@@ -97,7 +97,7 @@ export const printables: Printable[] = [
         dateAdded: '2025-01-20',
     },
     {
-        id: 'print6',
+        id: 6,
         title: 'Succulent Planter 3D Model',
         description: 'Geometric planter design perfect for small succulents and cacti.',
         image: '/placeholder.svg?height=400&width=400',
@@ -111,7 +111,7 @@ export const printables: Printable[] = [
         dateAdded: '2025-01-15',
     },
     {
-        id: 'print7',
+        id: 7,
         title: 'Inspirational Quote Prints',
         description: 'Set of 3 inspirational quote prints with modern typography.',
         image: '/placeholder.svg?height=400&width=400',
@@ -125,7 +125,7 @@ export const printables: Printable[] = [
         dateAdded: '2025-01-10',
     },
     {
-        id: 'print8',
+        id: 8,
         title: 'Meal Planning Kit',
         description: 'Complete meal planning system with grocery lists and recipe cards.',
         image: '/placeholder.svg?height=400&width=400',
@@ -140,7 +140,7 @@ export const printables: Printable[] = [
         dateAdded: '2025-01-05',
     },
     {
-        id: 'print9',
+        id: 9,
         title: 'Math Worksheets Bundle',
         description: 'Comprehensive set of math worksheets for elementary students.',
         image: '/placeholder.svg?height=400&width=400',
@@ -154,7 +154,7 @@ export const printables: Printable[] = [
         dateAdded: '2024-12-28',
     },
     {
-        id: 'print10',
+        id: 10,
         title: 'Smartphone Stand 3D Model',
         description: 'Adjustable smartphone stand design for 3D printing.',
         image: '/placeholder.svg?height=400&width=400',
@@ -168,7 +168,7 @@ export const printables: Printable[] = [
         dateAdded: '2024-12-20',
     },
     {
-        id: 'print11',
+        id: 11,
         title: 'Botanical Illustration Set',
         description: 'Collection of 6 vintage botanical illustrations.',
         image: '/placeholder.svg?height=400&width=400',
@@ -182,7 +182,7 @@ export const printables: Printable[] = [
         dateAdded: '2024-12-15',
     },
     {
-        id: 'print12',
+        id: 12,
         title: 'Daily Gratitude Journal',
         description: 'Printable journal pages for daily gratitude practice.',
         image: '/placeholder.svg?height=400&width=400',
