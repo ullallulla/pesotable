@@ -1,7 +1,35 @@
-import { Model, DataTypes } from 'sequelize';
+import { Model, DataTypes, Optional } from 'sequelize';
 import { sequelize } from '../utils/db';
 
-class PrintModel extends Model {}
+type PrintModelAttributes = {
+    id: number,
+    title: string,
+    description: string,
+    userId: string,
+    price: number,
+    isPublished: boolean,
+    imageUrl: string,
+    fileUrl: string,
+    downloads: number,
+    rating: number,
+    featured: boolean
+}
+
+type PrintModelCreationAttributes = Optional<PrintModelAttributes, 'id'>
+
+class PrintModel extends Model<PrintModelAttributes, PrintModelCreationAttributes> {
+    declare id: number;
+    declare title: string;
+    declare description: string;
+    declare userId: string;
+    declare price: number;
+    declare isPublished: boolean;
+    declare imageUrl: string;
+    declare fileUrl: string;
+    declare downloads: number;
+    declare rating: number;
+    declare featured: boolean;
+}
 
 PrintModel.init(
     {

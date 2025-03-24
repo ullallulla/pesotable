@@ -14,7 +14,7 @@ router.get('/printables', requireAuth(), async (req: Request, res: Response) => 
 });
 
 router.get('/printables/:id', (req: Request, res: Response) => {
-    const id = Number(req.params.id)
+    const id = Number(req.params.id);
     const printable = printables.find((p) => p.id === id);
     if (printable) {
         res.json(printable);
@@ -42,7 +42,7 @@ router.get('/usermodels', requireAuth(), async (req: Request, res: Response) => 
     const { userId } = getAuth(req);
     const printModels = await PrintModel.findAll({
         where: {
-            userId: userId,
+            userId: userId!, // requireAuth blocks access so this cannot be null
         },
         order: [['created_at', 'DESC']],
     });
@@ -53,6 +53,25 @@ router.post('/printmodels', async (req: Request, res: Response) => {
     const { userId } = getAuth(req);
     const printModel = await PrintModel.create({ ...req.body, userId });
     res.json(printModel);
+});
+
+router.put('/printmodels/:id', async (req: Request, res: Response) => {
+    const printModel = await PrintModel.findByPk(req.params.id);
+    if (!printModel) {
+        res.status(404).json({ message: 'Print model not found' });
+    } else {
+        printModel.title = req.body.title || printModel.title;
+        printModel.description = req.body.description || printModel.description;
+        printModel.price = req.body.price || printModel.price;
+        printModel.isPublished = req.body.isPublished || printModel.isPublished;
+        printModel.imageUrl = req.body.imageUrl || printModel.imageUrl;
+        printModel.fileUrl = req.body.fileUrl || printModel.fileUrl;
+        printModel.downloads = req.body.downloads || printModel.downloads;
+        printModel.rating = req.body.rating || printModel.rating;
+        printModel.featured = req.body.featured || printModel.featured;
+        await printModel.save();
+        res.json(printModel);
+    }
 });
 
 export default router;
