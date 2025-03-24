@@ -43,6 +43,10 @@ PrintModel.init(
             type: DataTypes.FLOAT,
             defaultValue: 0.0,
         },
+        featured: {
+            type: DataTypes.BOOLEAN,
+            defaultValue: false
+        }
     },
     {
         sequelize,
