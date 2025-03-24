@@ -10,11 +10,13 @@ import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { categories } from '../../../backend/data/prints';
 import { SignedIn, SignedOut, SignInButton, UserButton } from '@clerk/clerk-react';
+import TokenDebugger from './TokenDebugger';
 
 const Header = () => {
     return (
         <header className='sticky top-0 z-50 w-full border-b bg-background'>
             <div className='container max-w-7xl mx-auto flex h-16 items-center justify-between'>
+                <TokenDebugger/>
                 <div className='flex items-center gap-6'>
                     <Link to='/' className='flex items-center gap-2 font-bold text-xl'>
                         <BookOpen className='h-6 w-6' />
