@@ -18,9 +18,8 @@ PrintModel.init(
             type: DataTypes.TEXT,
         },
         userId: {
-            type: DataTypes.INTEGER,
+            type: DataTypes.STRING,
             allowNull: false,
-            references: { model: 'users', key: 'id' },
         },
         price: {
             type: DataTypes.FLOAT,
