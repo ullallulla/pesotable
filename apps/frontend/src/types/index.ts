@@ -5,19 +5,18 @@ export interface Creator {
 }
 
 export interface Printable {
-    id: string;
+    id: number;
     title: string;
     description: string;
-    image: string;
+    imageUrl: string;
+    fileUrl: string;
     price: number;
-    originalPrice?: number;
-    category: string;
     rating: number;
-    reviews: number;
     downloads: number;
-    featured: boolean;
-    creator: Creator;
-    dateAdded: string;
+    isPublished: boolean;
+    userId: string;
+    createdAt: string;
+    updatedAt: string
 }
 
 export interface Category {

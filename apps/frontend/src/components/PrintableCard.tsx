@@ -19,11 +19,11 @@ const PrintableCard = ({ printable }: PrintableCardProps) => {
             <Link to={`/printable/${printable.id}`}>
                 <div className='relative aspect-square overflow-hidden'>
                     <img
-                        src={printable.image || '/placeholder.svg'}
+                        src={printable.imageUrl || '/placeholder.svg'}
                         alt={printable.title}
                         className='object-cover transition-transform group-hover:scale-105'
                     />
-                    {printable.featured && <Badge className='absolute top-2 left-2 z-10'>Featured</Badge>}
+                    {/* {printable.featured && <Badge className='absolute top-2 left-2 z-10'>Featured</Badge>} */}
                     {printable.price === 0 && (
                         <Badge variant='secondary' className='absolute top-2 right-2 z-10'>
                             Free
@@ -46,11 +46,11 @@ const PrintableCard = ({ printable }: PrintableCardProps) => {
                         <span className='sr-only'>Add to favorites</span>
                     </Button>
                 </div>
-                <div className='flex items-center gap-1 mt-1 text-sm text-muted-foreground'>
+                {/* <div className='flex items-center gap-1 mt-1 text-sm text-muted-foreground'>
                     <Link to={`/creator/${printable.creator.id}`} className='hover:underline'>
                         {printable.creator.name}
                     </Link>
-                </div>
+                </div> */}
                 <div className='flex items-center gap-1 mt-2'>
                     <div className='flex'>
                         {Array(5)
@@ -69,7 +69,7 @@ const PrintableCard = ({ printable }: PrintableCardProps) => {
                                 </svg>
                             ))}
                     </div>
-                    <span className='text-xs text-muted-foreground'>({printable.reviews})</span>
+                    {/* <span className='text-xs text-muted-foreground'>({printable.reviews})</span> */}
                 </div>
             </CardContent>
             <CardFooter className='p-4 pt-0 flex justify-between items-center'>
@@ -79,11 +79,11 @@ const PrintableCard = ({ printable }: PrintableCardProps) => {
                     ) : (
                         <>
                             ${printable.price.toFixed(2)}
-                            {printable.originalPrice && (
+                            {/* {printable.originalPrice && (
                                 <span className='ml-2 text-sm text-muted-foreground line-through'>
                                     ${printable.originalPrice.toFixed(2)}
                                 </span>
-                            )}
+                            )} */}
                         </>
                     )}
                 </div>

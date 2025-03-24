@@ -5,11 +5,24 @@ import { Badge } from '@/components/ui/badge';
 import { Separator } from '@/components/ui/separator';
 import { Download, Heart, Share2, ShoppingCart, Star } from 'lucide-react';
 import PrintableCard from '@/components/PrintableCard';
-import { printables } from '../../../backend/data/prints';
+// import { printables } from '../../../backend/data/prints';
+import { Printable } from '@/types';
 
-const PrintablePage = () => {
+interface ModelProps {
+    models: Printable[];
+}
+
+const PrintablePage = ({ models }: ModelProps) => {
     const { id } = useParams();
-    const printable = printables.find((p) => p.id === id);
+
+    if (models.length === 0) {
+        return (
+            <div className='flex justify-center items-center h-screen'>
+                <p className='text-lg'>Loading model...</p>
+            </div>
+        );
+    }
+    const printable = models.find((p) => p.id === Number(id));
 
     if (!printable) {
         return (
@@ -24,9 +37,9 @@ const PrintablePage = () => {
     }
 
     // Get related printables (same category, excluding current)
-    const relatedPrintables = printables
-        .filter((p) => p.category === printable?.category && p.id !== printable.id)
-        .slice(0, 4);
+    // const relatedPrintables = printables
+    //     .filter((p) => p.category === printable?.category && p.id !== printable.id)
+    //     .slice(0, 4);
 
     return (
         <div className='container py-6 md:py-10 max-w-7xl mx-auto'>
@@ -34,11 +47,11 @@ const PrintablePage = () => {
                 <div className='space-y-4'>
                     <div className='relative aspect-square overflow-hidden rounded-lg border'>
                         <img
-                            src={printable?.image || '/placeholder.svg'}
+                            src={printable?.imageUrl || '/placeholder.svg'}
                             alt={printable?.title}
                             className='object-contain'
                         />
-                        {printable?.featured && <Badge className='absolute top-4 left-4 z-10'>Featured</Badge>}
+                        {/* {printable?.featured && <Badge className='absolute top-4 left-4 z-10'>Featured</Badge>} */}
                         {printable?.price === 0 && (
                             <Badge variant='secondary' className='absolute top-4 right-4 z-10'>
                                 Free
@@ -52,7 +65,7 @@ const PrintablePage = () => {
                                 className='relative aspect-square overflow-hidden rounded-md border cursor-pointer hover:opacity-80'
                             >
                                 <img
-                                    src={printable?.image || '/placeholder.svg'}
+                                    src={printable?.imageUrl || '/placeholder.svg'}
                                     alt={`${printable?.title} thumbnail ${i + 1}`}
                                     className='object-cover'
                                 />
@@ -64,11 +77,11 @@ const PrintablePage = () => {
                 <div className='space-y-6'>
                     <div>
                         <h1 className='text-3xl font-bold'>{printable?.title}</h1>
-                        <div className='flex items-center gap-2 mt-2'>
+                        {/* <div className='flex items-center gap-2 mt-2'>
                             <Link to={`/creator/${printable?.creator.id}`} className='text-primary hover:underline'>
                                 {printable?.creator.name}
                             </Link>
-                        </div>
+                        </div> */}
                         <div className='flex items-center gap-2 mt-2'>
                             <div className='flex'>
                                 {Array(5)
@@ -86,9 +99,9 @@ const PrintablePage = () => {
                                         />
                                     ))}
                             </div>
-                            <span className='text-sm text-muted-foreground'>
+                            {/* <span className='text-sm text-muted-foreground'>
                                 {printable?.rating.toFixed(1)} ({printable?.reviews} reviews)
-                            </span>
+                            </span> */}
                             <span className='text-sm text-muted-foreground'>•</span>
                             <span className='text-sm text-muted-foreground'>{printable?.downloads} downloads</span>
                         </div>
@@ -101,22 +114,22 @@ const PrintablePage = () => {
                             ) : (
                                 <>
                                     ${printable?.price.toFixed(2)}
-                                    {printable?.originalPrice && (
+                                    {/* {printable?.originalPrice && (
                                         <span className='ml-2 text-xl text-muted-foreground line-through'>
                                             ${printable.originalPrice.toFixed(2)}
                                         </span>
-                                    )}
+                                    )} */}
                                 </>
                             )}
                         </div>
-                        {printable?.originalPrice && (
+                        {/* {printable?.originalPrice && (
                             <Badge variant='outline' className='text-green-600'>
                                 {Math.round(
                                     ((printable.originalPrice - printable.price) / printable.originalPrice) * 100,
                                 )}
                                 % OFF
                             </Badge>
-                        )}
+                        )} */}
                     </div>
 
                     <p className='text-muted-foreground'>{printable?.description}</p>
@@ -124,7 +137,7 @@ const PrintablePage = () => {
                     <div className='space-y-2'>
                         <div className='flex justify-between text-sm'>
                             <span className='text-muted-foreground'>Category:</span>
-                            <span className='font-medium capitalize'>{printable?.category.replace('-', ' ')}</span>
+                            {/* <span className='font-medium capitalize'>{printable?.category.replace('-', ' ')}</span> */}
                         </div>
                         <div className='flex justify-between text-sm'>
                             <span className='text-muted-foreground'>File Format:</span>
@@ -133,7 +146,7 @@ const PrintablePage = () => {
                         <div className='flex justify-between text-sm'>
                             <span className='text-muted-foreground'>Date Added:</span>
                             <span className='font-medium'>
-                                {new Date(printable?.dateAdded ?? '').toLocaleDateString()}
+                                {new Date(printable?.createdAt ?? '').toLocaleDateString()}
                             </span>
                         </div>
                         <div className='flex justify-between text-sm'>
@@ -189,20 +202,20 @@ const PrintablePage = () => {
             <Tabs defaultValue='details' className='mt-10'>
                 <TabsList className='w-full sm:w-auto grid grid-cols-3 sm:flex'>
                     <TabsTrigger value='details'>Details</TabsTrigger>
-                    <TabsTrigger value='reviews'>Reviews ({printable?.reviews})</TabsTrigger>
+                    {/* <TabsTrigger value='reviews'>Reviews ({printable?.reviews})</TabsTrigger> */}
                     <TabsTrigger value='license'>License</TabsTrigger>
                 </TabsList>
                 <TabsContent value='details' className='mt-6 space-y-4'>
                     <h2 className='text-xl font-bold'>Product Details</h2>
                     <p>
                         {printable?.description} This premium printable is designed to help you{' '}
-                        {printable?.category === 'planners'
+                        {/* {printable?.category === 'planners'
                             ? 'stay organized and productive'
                             : printable?.category === 'wall-art'
                               ? 'decorate your space with beautiful designs'
                               : printable?.category === '3d-models'
                                 ? 'create amazing 3D printed objects'
-                                : 'enhance your learning experience'}
+                                : 'enhance your learning experience'} */}
                         .
                     </p>
 
@@ -212,7 +225,7 @@ const PrintablePage = () => {
                         <li>PNG files with transparent backgrounds</li>
                         <li>SVG vector files for scaling without quality loss</li>
                         <li>Detailed instructions for printing and usage</li>
-                        {printable?.category === 'planners' && (
+                        {/* {printable?.category === 'planners' && (
                             <>
                                 <li>Multiple color variations</li>
                                 <li>Both dated and undated versions</li>
@@ -223,7 +236,7 @@ const PrintablePage = () => {
                                 <li>STL files optimized for 3D printing</li>
                                 <li>Recommended print settings</li>
                             </>
-                        )}
+                        )} */}
                     </ul>
 
                     <h3 className='text-lg font-semibold mt-4'>Specifications</h3>
@@ -279,9 +292,9 @@ const PrintablePage = () => {
                                         />
                                     ))}
                             </div>
-                            <div className='text-sm text-muted-foreground mt-1'>
+                            {/* <div className='text-sm text-muted-foreground mt-1'>
                                 Based on {printable?.reviews} reviews
-                            </div>
+                            </div> */}
                         </div>
 
                         <div className='flex-1 space-y-1'>
@@ -400,7 +413,7 @@ const PrintablePage = () => {
             <div className='mt-16'>
                 <h2 className='text-2xl font-bold mb-6'>Related Printables</h2>
                 <div className='grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6'>
-                    {relatedPrintables.map((printable) => (
+                    {models.map((printable) => (
                         <PrintableCard key={printable.id} printable={printable} />
                     ))}
                 </div>
