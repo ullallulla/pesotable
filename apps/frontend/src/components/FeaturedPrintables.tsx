@@ -7,24 +7,25 @@ import { Download } from 'lucide-react';
 import type { Printable } from '@/types';
 
 interface FeaturedPrintablesProps {
-    printables: Printable[];
+    models: Printable[];
 }
 
-export default function FeaturedPrintables({ printables }: FeaturedPrintablesProps) {
+export default function FeaturedPrintables({ models }: FeaturedPrintablesProps) {
     const [currentIndex, setCurrentIndex] = useState(0);
-
+    
     useEffect(() => {
         const interval = setInterval(() => {
-            setCurrentIndex((prevIndex) => (prevIndex + 1) % printables.length);
+            setCurrentIndex((prevIndex) => (prevIndex + 1) % models.length);
         }, 5000);
         return () => clearInterval(interval);
-    }, [printables.length]);
+    }, [models.length]);
 
     const handleDotClick = (index: number) => {
         setCurrentIndex(index);
     };
 
-    const currentPrintable = printables[currentIndex];
+
+    const currentPrintable = models[currentIndex];
 
     return (
         <div className='relative'>
@@ -32,7 +33,7 @@ export default function FeaturedPrintables({ printables }: FeaturedPrintablesPro
                 <div className='grid md:grid-cols-2 gap-6'>
                     <div className='relative aspect-square md:aspect-auto overflow-hidden'>
                         <img
-                            src={currentPrintable.image || '/placeholder.svg'}
+                            src={currentPrintable.imageUrl || '/placeholder.svg'}
                             alt={currentPrintable.title}
                             className='object-cover md:object-contain'
                         />
@@ -42,7 +43,7 @@ export default function FeaturedPrintables({ printables }: FeaturedPrintablesPro
                         <div className='space-y-4'>
                             <div>
                                 <h2 className='text-2xl font-bold'>{currentPrintable.title}</h2>
-                                <p className='text-muted-foreground'>by {currentPrintable.creator.name}</p>
+                                {/* <p className='text-muted-foreground'>by {currentPrintable.creator.name}</p> */}
                             </div>
                             <p className='text-muted-foreground'>{currentPrintable.description}</p>
                             <div className='flex items-center gap-2'>
@@ -52,11 +53,11 @@ export default function FeaturedPrintables({ printables }: FeaturedPrintablesPro
                                     ) : (
                                         <>
                                             ${currentPrintable.price.toFixed(2)}
-                                            {currentPrintable.originalPrice && (
+                                            {/* {currentPrintable.originalPrice && (
                                                 <span className='ml-2 text-base text-muted-foreground line-through'>
                                                     ${currentPrintable.originalPrice.toFixed(2)}
                                                 </span>
-                                            )}
+                                            )} */}
                                         </>
                                     )}
                                 </div>
@@ -75,7 +76,7 @@ export default function FeaturedPrintables({ printables }: FeaturedPrintablesPro
                 </div>
             </Card>
             <div className='flex justify-center gap-2 mt-4'>
-                {printables.map((_, index) => (
+                {models.map((_, index) => (
                     <button
                         key={index}
                         className={`h-2 w-2 rounded-full ${index === currentIndex ? 'bg-primary' : 'bg-muted-foreground/30'}`}

@@ -1,5 +1,5 @@
 import { Button } from '@/components/ui/button';
-// import FeaturedPrintables from './FeaturedPrintables';
+import FeaturedPrintables from './FeaturedPrintables';
 import {
     DropdownMenu,
     DropdownMenuContent,
@@ -17,13 +17,17 @@ interface ModelProps {
 }
 
 const HomePage = ({models}: ModelProps) => {
+    const featuredModels: Printable[] = models.filter((p) => p.featured)
+
     return (
         <main className='flex-1'>
+            {featuredModels.length > 0 && (
             <section className='py-6 md:py-10 bg-muted/50'>
-                {/* <div className='container max-w-7xl mx-auto'>
-                    <FeaturedPrintables printables={featuredPrintables} />
-                </div> */}
+                <div className='container max-w-7xl mx-auto'>
+                    <FeaturedPrintables models={featuredModels} />
+                </div>
             </section>
+            )}
             <section className='py-8 container max-w-7xl mx-auto'>
                 <div className='flex flex-col gap-4 '>
                     <div className='flex items-center justify-between'>

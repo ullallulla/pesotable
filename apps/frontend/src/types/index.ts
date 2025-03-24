@@ -16,7 +16,8 @@ export interface Printable {
     isPublished: boolean;
     userId: string;
     createdAt: string;
-    updatedAt: string
+    updatedAt: string;
+    featured: boolean
 }
 
 export interface Category {
