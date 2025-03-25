@@ -18,7 +18,13 @@ interface ModelProps {
 
 const HomePage = ({models}: ModelProps) => {
     const featuredModels: Printable[] = models.filter((p) => p.featured)
-
+    if (models.length === 0) {
+        return (
+            <div className='flex justify-center items-center h-screen'>
+                <p className='text-lg'>Loading model...</p>
+            </div>
+        );
+    }
     return (
         <main className='flex-1'>
             {featuredModels.length > 0 && (
