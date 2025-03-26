@@ -1,6 +1,6 @@
 import express from 'express';
 import cors from 'cors';
-import printsRouter from './controllers/prints';
+import printsRouter from './routes/printmodels';
 import { PORT, UPLOADTHING_TOKEN } from './utils/config';
 import { connectToDatabase } from './utils/db';
 import { createRouteHandler } from 'uploadthing/express';

@@ -26,3 +26,19 @@ export interface Category {
     slug: string;
     count: number;
 }
+
+export interface PrintModelData {
+    id: string;
+    title: string;
+    description: string;
+    price: number;
+    isPublished: boolean;
+    imageUrl: string;
+    fileUrl: string;
+    downloads: number;
+    rating: number;
+    featured: boolean;
+    userId: string;
+}
+
+export type PrintModelDataWithoutId = Omit<PrintModelData, 'id'>
