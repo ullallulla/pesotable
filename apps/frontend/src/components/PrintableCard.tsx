@@ -8,23 +8,23 @@ import { cn } from '@/lib/utils';
 import type { Printable } from '@/types';
 
 interface PrintableCardProps {
-    printable: Printable;
+    printModel: Printable;
 }
 
-const PrintableCard = ({ printable }: PrintableCardProps) => {
+const PrintableCard = ({ printModel }: PrintableCardProps) => {
     const [isFavorite, setIsFavorite] = useState(false);
 
     return (
         <Card className='overflow-hidden group'>
-            <Link to={`/printable/${printable.id}`}>
+            <Link to={`/printModel/${printModel.id}`}>
                 <div className='relative aspect-square overflow-hidden'>
                     <img
-                        src={printable.imageUrl || '/placeholder.svg'}
-                        alt={printable.title}
+                        src={printModel.imageUrl || '/placeholder.svg'}
+                        alt={printModel.title}
                         className='object-cover transition-transform group-hover:scale-105'
                     />
-                    {/* {printable.featured && <Badge className='absolute top-2 left-2 z-10'>Featured</Badge>} */}
-                    {printable.price === 0 && (
+                    {/* {printModel.featured && <Badge className='absolute top-2 left-2 z-10'>Featured</Badge>} */}
+                    {printModel.price === 0 && (
                         <Badge variant='secondary' className='absolute top-2 right-2 z-10'>
                             Free
                         </Badge>
@@ -33,8 +33,8 @@ const PrintableCard = ({ printable }: PrintableCardProps) => {
             </Link>
             <CardContent className='p-4'>
                 <div className='flex justify-between items-start gap-2'>
-                    <Link to={`/printable/${printable.id}`} className='flex-1'>
-                        <h3 className='font-medium line-clamp-2 hover:underline'>{printable.title}</h3>
+                    <Link to={`/printModel/${printModel.id}`} className='flex-1'>
+                        <h3 className='font-medium line-clamp-2 hover:underline'>{printModel.title}</h3>
                     </Link>
                     <Button
                         variant='ghost'
@@ -47,8 +47,8 @@ const PrintableCard = ({ printable }: PrintableCardProps) => {
                     </Button>
                 </div>
                 {/* <div className='flex items-center gap-1 mt-1 text-sm text-muted-foreground'>
-                    <Link to={`/creator/${printable.creator.id}`} className='hover:underline'>
-                        {printable.creator.name}
+                    <Link to={`/creator/${printModel.creator.id}`} className='hover:underline'>
+                        {printModel.creator.name}
                     </Link>
                 </div> */}
                 <div className='flex items-center gap-1 mt-2'>
@@ -60,7 +60,7 @@ const PrintableCard = ({ printable }: PrintableCardProps) => {
                                     key={i}
                                     className={cn(
                                         'h-4 w-4',
-                                        i < printable.rating ? 'text-yellow-400 fill-yellow-400' : 'text-gray-300',
+                                        i < printModel.rating ? 'text-yellow-400 fill-yellow-400' : 'text-gray-300',
                                     )}
                                     xmlns='http://www.w3.org/2000/svg'
                                     viewBox='0 0 24 24'
@@ -69,19 +69,19 @@ const PrintableCard = ({ printable }: PrintableCardProps) => {
                                 </svg>
                             ))}
                     </div>
-                    {/* <span className='text-xs text-muted-foreground'>({printable.reviews})</span> */}
+                    {/* <span className='text-xs text-muted-foreground'>({printModel.reviews})</span> */}
                 </div>
             </CardContent>
             <CardFooter className='p-4 pt-0 flex justify-between items-center'>
                 <div className='font-medium'>
-                    {printable.price === 0 ? (
+                    {printModel.price === 0 ? (
                         'Free'
                     ) : (
                         <>
-                            ${printable.price.toFixed(2)}
-                            {/* {printable.originalPrice && (
+                            ${printModel.price.toFixed(2)}
+                            {/* {printModel.originalPrice && (
                                 <span className='ml-2 text-sm text-muted-foreground line-through'>
-                                    ${printable.originalPrice.toFixed(2)}
+                                    ${printModel.originalPrice.toFixed(2)}
                                 </span>
                             )} */}
                         </>
@@ -89,7 +89,7 @@ const PrintableCard = ({ printable }: PrintableCardProps) => {
                 </div>
                 <Button size='sm' className='gap-1'>
                     <Download className='h-4 w-4' />
-                    {printable.price === 0 ? 'Download' : 'Buy'}
+                    {printModel.price === 0 ? 'Download' : 'Buy'}
                 </Button>
             </CardFooter>
         </Card>

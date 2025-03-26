@@ -11,20 +11,27 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import PrintableCard from './PrintableCard';
 // import { featuredPrintables, printables } from '../../../backend/data/prints';
 import { Printable } from '@/types';
+import modelService from '../services/models'
+import { useQuery } from '@tanstack/react-query';
 
-interface ModelProps {
-    models: Printable[]
-}
 
-const HomePage = ({models}: ModelProps) => {
-    const featuredModels: Printable[] = models.filter((p) => p.featured)
-    if (models.length === 0) {
+const HomePage = () => {
+    const { isPending, isError, data: printModels, error } = useQuery<Printable[]>({
+        queryKey: ['printModels'],
+        queryFn: modelService.getAll
+    })
+    if (isPending) {
         return (
             <div className='flex justify-center items-center h-screen'>
                 <p className='text-lg'>Loading model...</p>
             </div>
         );
     }
+
+    if (isError) {
+        return <div>Error: {error.message}</div>
+    }
+    const featuredModels: Printable[] = printModels.filter((p) => p.featured)
     return (
         <main className='flex-1'>
             {featuredModels.length > 0 && (
@@ -68,44 +75,44 @@ const HomePage = ({models}: ModelProps) => {
                         </TabsList>
                         <TabsContent value='all' className='mt-0'>
                             <div className='grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6'>
-                                {models.map((model) => (
-                                    <PrintableCard key={model.id} printable={model} />
+                                {printModels.map((model) => (
+                                    <PrintableCard key={model.id} printModel={model} />
                                 ))}
                             </div>
                         </TabsContent>
                         <TabsContent value='3d' className='mt-0'>
                             <div className='grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6'>
-                                {models
+                                {printModels
                                     // .filter((p) => p.category === '3d-models')
                                     .map((model) => (
-                                        <PrintableCard key={model.id} printable={model} />
+                                        <PrintableCard key={model.id} printModel={model} />
                                     ))}
                             </div>
                         </TabsContent>
                         <TabsContent value='planners' className='mt-0'>
                             <div className='grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6'>
-                                {models
+                                {printModels
                                     // .filter((p) => p.category === 'planners')
                                     .map((model) => (
-                                        <PrintableCard key={model.id} printable={model} />
+                                        <PrintableCard key={model.id} printModel={model} />
                                     ))}
                             </div>
                         </TabsContent>
                         <TabsContent value='art' className='mt-0'>
                             <div className='grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6'>
-                                {models
+                                {printModels
                                     // .filter((p) => p.category === 'wall-art')
                                     .map((model) => (
-                                        <PrintableCard key={model.id} printable={model} />
+                                        <PrintableCard key={model.id} printModel={model} />
                                     ))}
                             </div>
                         </TabsContent>
                         <TabsContent value='educational' className='mt-0'>
                             <div className='grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6'>
-                                {models
+                                {printModels
                                     // .filter((p) => p.category === 'educational')
                                     .map((model) => (
-                                        <PrintableCard key={model.id} printable={model} />
+                                        <PrintableCard key={model.id} printModel={model} />
                                     ))}
                             </div>
                         </TabsContent>
