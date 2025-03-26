@@ -7,39 +7,35 @@ import UploadPage from './components/UploadPage';
 import ModelViewer from './components/ModelViewer';
 import PostHogPageView from './lib/pageview';
 import modelService from './services/models';
-import { useEffect, useState } from 'react';
+import { useQuery } from '@tanstack/react-query';
+import ScrollToTop from './components/ScrollToTop';
 
 const App = () => {
-    const [models, setModels] = useState([]);
-    const [loading, setLoading] = useState(true);
+    const { isPending, isError, data, error } = useQuery({
+        queryKey: ['printModels'],
+        queryFn: modelService.getAll
+    })
 
-    useEffect(() => {
-        const fetchModels = async () => {
-            setLoading(true);
-            try {
-                const initialModels = await modelService.getAll();
-                setModels(initialModels);
-            } finally {
-                setLoading(false);
-            }
-        };
-        fetchModels();
-    }, []);
+    if (isPending) {
+        return <div>Loading...</div>;
+    }
 
-    if (loading) {
-        return <div>loading...</div>;
+    if (isError) {
+        return <div>Error: {error.message}</div>
     }
     
     return (
         <Router>
             <PostHogPageView />
             <Header />
-            <Routes>
-                <Route path='/' element={<HomePage models={models} />} />
-                <Route path='/printable/:id' element={<PrintablePage models={models} />} />
-                <Route path='/upload' element={<UploadPage />} />
-                <Route path='/model' element={<ModelViewer />} />
-            </Routes>
+            <ScrollToTop>
+                <Routes>
+                    <Route path='/' element={<HomePage models={data} />} />
+                    <Route path='/printable/:id' element={<PrintablePage models={data} />} />
+                    <Route path='/upload' element={<UploadPage />} />
+                    <Route path='/model' element={<ModelViewer />} />
+                </Routes>
+            </ScrollToTop>
             <Footer />
         </Router>
     );

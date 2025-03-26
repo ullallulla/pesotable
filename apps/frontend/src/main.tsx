@@ -4,13 +4,16 @@ import './index.css';
 import App from './App.tsx';
 import { ClerkProvider } from '@clerk/clerk-react';
 import { PostHogProvider } from 'posthog-js/react';
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 
-const POSTHOG_PUBLISHABLE_KEY = import.meta.env.VITE_APP_PUBLIC_POSTHOG_KEY
-const POSTHOG_PUBLIC_HOST = import.meta.env.VITE_APP_PUBLIC_POSTHOG_HOST
+const queryClient = new QueryClient();
+
+const POSTHOG_PUBLISHABLE_KEY = import.meta.env.VITE_APP_PUBLIC_POSTHOG_KEY;
+const POSTHOG_PUBLIC_HOST = import.meta.env.VITE_APP_PUBLIC_POSTHOG_HOST;
 
 const options = {
     api_host: POSTHOG_PUBLIC_HOST,
-    capture_pageview: false
+    capture_pageview: false,
 };
 
 const PUBLISHABLE_KEY = import.meta.env.VITE_CLERK_PUBLISHABLE_KEY;
@@ -23,7 +26,9 @@ createRoot(document.getElementById('root')!).render(
     <StrictMode>
         <ClerkProvider publishableKey={PUBLISHABLE_KEY} afterSignOutUrl='/'>
             <PostHogProvider apiKey={POSTHOG_PUBLISHABLE_KEY} options={options}>
-                <App />
+                <QueryClientProvider client={queryClient}>
+                    <App />
+                </QueryClientProvider>
             </PostHogProvider>
         </ClerkProvider>
     </StrictMode>,
