@@ -7,6 +7,7 @@ import UploadPage from './components/UploadPage';
 import ModelViewer from './components/ModelViewer';
 import PostHogPageView from './lib/pageview';
 import ScrollToTop from './components/ScrollToTop';
+import AdminPanel from './components/AdminPanel';
 
 const App = () => {
     return (
@@ -19,6 +20,7 @@ const App = () => {
                     <Route path='/printable/:id' element={<PrintablePage />} />
                     <Route path='/upload' element={<UploadPage />} />
                     <Route path='/model' element={<ModelViewer />} />
+                    <Route path='/admin' element={<AdminPanel />} />
                 </Routes>
             </ScrollToTop>
             <Footer />

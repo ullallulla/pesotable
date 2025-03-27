@@ -85,6 +85,9 @@ const Header = () => {
                         <Button variant='ghost' asChild className='h-10 px-4'>
                             <Link to='/upload'>Upload</Link>
                         </Button>
+                        <Button variant='ghost' asChild className='h-10 px-4'>
+                            <Link to='/admin'>Admin</Link>
+                        </Button>
                     </div>
                 </div>
             </div>
