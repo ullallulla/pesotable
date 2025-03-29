@@ -11,11 +11,11 @@ const AdminPanel = () => {
     }
 
     const isAdmin = user?.publicMetadata?.role === 'admin';
-    console.log(isAdmin);
+
     if (!isAdmin) {
         return <Navigate to='/' replace />;
     }
-    console.log('USER', user);
+
     return (
         <div className='flex min-h-screen flex-col'>
             <header className='sticky top-0 z-50 w-full border-b bg-background'>
@@ -74,7 +74,9 @@ const AdminPanel = () => {
                         </div>
                     </div>
                 </aside>
-
+                <main className='flex-1 overflow-auto p-6'>
+                    < Outlet />
+                </main>
             </div>
         </div>
     );

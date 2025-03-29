@@ -26,3 +26,14 @@ export interface Category {
     slug: string;
     count: number;
 }
+
+export interface PrintModelFormValues {
+    title: string;
+    description: string;
+    imageUrl: string;
+    fileUrl: string;
+    price: number;
+    isPublished: boolean;
+    userId: string;
+    featured: boolean;
+}
